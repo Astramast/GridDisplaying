@@ -13,3 +13,6 @@ class Grid:
     def getSquare(self, i, j):
         return self.matrix[i][j]
 
+	def fillSquare(self, i, j, new):
+		self.matrix[i][j] = new
+
