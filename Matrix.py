@@ -64,7 +64,7 @@ class Matrix:
 		if self.l != other.getLinesAmount() or self.c != other.getColumnsAmount():
 			raise ValueError("Trying to add/substract matrices with different dimensions")
 
-	def checkMultiplicty(self, other):
+	def checkMultiplicity(self, other):
 		if self.c != other.getLinesAmount():
 			raise ValueError("Number of columns not equal to number of lines in matricial multiplication.")
 
@@ -82,7 +82,7 @@ class Matrix:
 		return column
 
 	def get(self, i, j):
-		return matrix[i][j]
+		return self.matrix[i][j]
 
 if __name__ == "__main__":
 	m = Matrix()

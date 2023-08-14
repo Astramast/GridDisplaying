@@ -15,15 +15,6 @@ class Displayer:
 		self.drawer.up()
 		#self.drawer.hideturtle()
 	
-	def getScreen(self):
-		return self.screen
-	
-	def getDrawer(self):
-		return self.drawer
-	
-	def getBase(self):
-		return self.bases[self.base_id]
-	
 	def switchBase(self):
 		self.base_id += 1
 		self.base_id %= len(self.bases)
@@ -39,15 +30,34 @@ class Displayer:
 		self.drawer.goto(x,y+edge)
 		self.drawer.goto(x,y)
 		self.drawer.up()
-		
+
+	def exitOnClick(self):
+		self.screen.exitonclick()
+
+	def drawLine(self, start, end):
+		self.drawer.goto(start.get(0,0), start.get(0,1))
+		self.drawer.down()
+		self.drawer.goto(end.get(0,0), end.get(0,1))
+		self.drawer.up()
+
+	def pave(self, grid):
+		y = grid.getLinesAmount()
+		x = grid.getColumnsAmount()
+		for i in range(grid.getLinesAmount()+1):
+			self.drawLine(Matrix(1,2,[[0,i]])*self.bases[self.base_id], Matrix(1,2,[[x,i]])*self.bases[self.base_id])
+		for j in range(grid.getColumnsAmount()+1):
+			self.drawLine(Matrix(1,2,[[j,0]])*self.bases[self.base_id], Matrix(1,2,[[j,y]])*self.bases[self.base_id])
+			
+
 	def getBases(self):
 		return self.bases
 	
-	def draw(self, grid):
-		edge_size = min(self.width/grid.getWidth(), self.height/grid.getHeight())
-		for y in range(grid.getHeight()):
-			for x in range(grid.getWidth()):
-				self.squared(edge_size, x*edge_size, y*edge_size)
-		self.screen.exitonclick()
-
-	#TODO^
+	def getScreen(self):
+		return self.screen
+	
+	def getDrawer(self):
+		return self.drawer
+	
+	def getBase(self):
+		return self.bases[self.base_id]
+	
