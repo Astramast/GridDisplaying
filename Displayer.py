@@ -43,10 +43,11 @@ class Displayer:
 	def pave(self, grid):
 		y = grid.getLinesAmount()
 		x = grid.getColumnsAmount()
+		edge = min(self.height/y, self.width/x)
 		for i in range(grid.getLinesAmount()+1):
-			self.drawLine(Matrix(1,2,[[0,i]])*self.bases[self.base_id], Matrix(1,2,[[x,i]])*self.bases[self.base_id])
+			self.drawLine(Matrix(1,2,[[0,i*edge]])*self.bases[self.base_id], Matrix(1,2,[[x*edge,i*edge]])*self.bases[self.base_id])
 		for j in range(grid.getColumnsAmount()+1):
-			self.drawLine(Matrix(1,2,[[j,0]])*self.bases[self.base_id], Matrix(1,2,[[j,y]])*self.bases[self.base_id])
+			self.drawLine(Matrix(1,2,[[j*edge,0]])*self.bases[self.base_id], Matrix(1,2,[[j*edge,y*edge]])*self.bases[self.base_id])
 			
 
 	def getBases(self):

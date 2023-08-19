@@ -27,7 +27,7 @@ class Matrix:
 			for column_number in range(c):
 				submults = [0 for _ in range(self.c)]
 				for mult in range(self.c):
-					submults[mult] = newmatrix[line_number][mult]*other.get(mult, column_number)
+					submults[mult] = self.matrix[line_number][mult]*other.get(mult, column_number)
 				newline[column_number] = sum(submults)
 			newmatrix[line_number] = newline
 		return Matrix(self.l, c, newmatrix)
@@ -59,6 +59,9 @@ class Matrix:
 			for column in range(self.c):
 				newmatrix[line][column] = self.matrix[line][column] - other.get(line, column)
 		return Matrix(self.l, self.c, newmatrix)
+
+	def __repr__(self):
+		return str(self.matrix)
 
 	def checkSameDims(self, other):
 		if self.l != other.getLinesAmount() or self.c != other.getColumnsAmount():
